@@ -17,6 +17,9 @@ const getWikiQuery = require("./controllers/wikiController");
 // space info controllers 
 const { getNASAapod, getNASAneo, getSpaceflightNews, getISSinfo, getAstronauts} = require("./controllers/spaceInfoController");
 
+// Dad joke controllers
+const getJoke = require("./controllers/jokesController");
+
 // ROUTES ---------------------------------------------------------------------
 
 // GET response to Wiki Query for Wikibot 
@@ -36,6 +39,9 @@ router.get("/space/iss/", getISSinfo);
 
 // Get response to Astronauts information
 router.get("/space/astronauts/", getAstronauts);
+
+// Get response for Dad Joke
+router.get("/joke/", getJoke);
 
 // ----------------------------------------------------------------------------
 
