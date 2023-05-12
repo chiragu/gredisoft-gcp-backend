@@ -20,6 +20,9 @@ const { getNASAapod, getNASAneo, getSpaceflightNews, getISSinfo, getAstronauts} 
 // Dad joke controllers
 const getJoke = require("./controllers/jokesController");
 
+// Admin login controller
+const adminLogin = require("./controllers/adminController");
+
 // ROUTES ---------------------------------------------------------------------
 
 // GET response to Wiki Query for Wikibot 
@@ -42,6 +45,9 @@ router.get("/space/astronauts/", getAstronauts);
 
 // Get response for Dad Joke
 router.get("/joke/", getJoke);
+
+// Admin Login Route
+router.post('/admin', adminLogin);
 
 // ----------------------------------------------------------------------------
 

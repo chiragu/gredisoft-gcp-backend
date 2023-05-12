@@ -8,6 +8,7 @@ Serverside Express App for GCP React Apps
 
 // IMPORTS --------------------------------------------------------------------
 const express = require('express');  // express 
+const mongoose = require("mongoose"); // mongoose db
 require("dotenv").config();  // dotenv variables
 const routes = require("./routes"); // routes
 
@@ -29,9 +30,16 @@ app.use("/api/", routes);
 
 // SERVER ---------------------------------------------------------------------
 
-// listen for requests (use port # from dotenv)
-app.listen(process.env.PORT, () => {
-    console.log("Listening on Port", process.env.PORT);
-});
+// connect to db (use db connection string from dotenv)
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => {
+        // listen for requests (use port # from dotenv)
+        app.listen(process.env.PORT, () => {
+            console.log("Connected to DB and Listening on Port", process.env.PORT);
+        });
+    })
+    .catch((error) => {
+        console.log("Database/Server Connection Failed!");
+    });
 
 
