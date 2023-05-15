@@ -63,4 +63,28 @@ adminSchema.statics.signup = async function (userID, password, signupCode) {
     return AdminUser;
 }
 
+// Static login method
+adminSchema.statics.login = async function (userID, password) {
+
+    // Validation
+    if (!userID || !password) {
+        throw Error("All fields must be filled");
+    }
+
+    // Find user
+    const AdminUser = await this.findOne({userID});
+    if (!AdminUser) {
+        throw Error("Incorrect ID");
+    }
+
+    // Check password
+    const match = await bcrypt.compare(password, AdminUser.password);
+
+    if (!match) {
+        throw Error("Incorrect Password");
+    }
+
+    return AdminUser;
+}
+
 module.exports = mongoose.model('Admin',adminSchema);  // export model

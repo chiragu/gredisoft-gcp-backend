@@ -36,8 +36,20 @@ const signupAdmin = async (req, res) => {
 
 // Login Admin
 const loginAdmin = async (req, res) => {
-    res.json({mssg: "Login Admin"});
 
+    const {userID, password} = req.body; 
+
+    try {
+        // login user
+        const adminUser = await Admin.login(userID, password);
+        // create token
+        const token = createToken(adminUser._id);
+        // Send response with id and token
+        res.status(200).json({userID, token});
+    }
+    catch (error) {
+        res.status(400).json({error: error.message});
+    }
 }
 
 // Export Functions
