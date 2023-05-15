@@ -20,8 +20,8 @@ const { getNASAapod, getNASAneo, getSpaceflightNews, getISSinfo, getAstronauts} 
 // Dad joke controllers
 const getJoke = require("./controllers/jokesController");
 
-// Admin login controller
-const adminLogin = require("./controllers/adminController");
+// Admin login and signup controller
+const {signupAdmin, loginAdmin} = require("./controllers/adminController");
 
 // ROUTES ---------------------------------------------------------------------
 
@@ -46,8 +46,11 @@ router.get("/space/astronauts/", getAstronauts);
 // Get response for Dad Joke
 router.get("/joke/", getJoke);
 
+// Admin SignUp Route
+router.post('/admin/signup', signupAdmin);
+
 // Admin Login Route
-router.post('/admin', adminLogin);
+router.post('/admin/login', loginAdmin);
 
 // ----------------------------------------------------------------------------
 

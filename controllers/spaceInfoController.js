@@ -8,7 +8,6 @@ Controllers for the SpaceInfo page
 
 // import fetch api
 const fetch = (...args) =>	import('node-fetch').then(({default: fetch}) => fetch(...args));
-require("dotenv").config();  // dotenv variables
 
 // Get NASA astronomy picture of the day
 const getNASAapod = async (req, res) => {
