@@ -22,7 +22,7 @@ const { getNASAapod, getNASAneo, getSpaceflightNews, getISSinfo, getAstronauts} 
 const getJoke = require("./controllers/jokesController");
 
 // Admin login and signup controller
-const {signupAdmin, loginAdmin, adminTasks} = require("./controllers/adminController");
+const {signupAdmin, loginAdmin, getAdminTasks, setAdminTasks} = require("./controllers/adminController");
 
 // ROUTES ---------------------------------------------------------------------
 
@@ -56,8 +56,11 @@ router.post('/admin/login', loginAdmin);
 // Authenticated Routes -------------------------------------------------------
 router.use(requireAuth);
 
-// Admin Tasks
-router.post('/admin/tasks', adminTasks);
+// Get Admin Tasks
+router.get('/admin/tasks', getAdminTasks);
+
+// Patch Admin tasks
+router.patch('/admin/tasks', setAdminTasks);
 
 // ----------------------------------------------------------------------------
 

@@ -53,11 +53,30 @@ const loginAdmin = async (req, res) => {
 }
 
 // Get Admin Tasks
-const adminTasks = async (req, res) => {
-
-    res.status(200).json({blah: "blah"});
-
+const getAdminTasks = async (req, res) => {
+    try {
+        const _id = req.user._id;
+        const AdminUserTasks = await Admin.findOne({_id}).select("tasks");
+        res.status(200).json({tasks: AdminUserTasks.tasks});
+    }
+    catch (error) {
+        res.status(400).json({error: error.message});
+    }
 }
 
+// Set Admin Tasks
+const setAdminTasks = async (req, res) => {
+    try {
+        const {tasks} = req.body;
+        const _id = req.user._id; 
+        await Admin.findOneAndUpdate({_id},{tasks});
+        res.status(200).json({msg: "Updated tasks"});
+    }
+    catch (error) {
+        res.status(400).json({error: error.message});
+    }
+}
+
+
 // Export Functions
-module.exports = {signupAdmin, loginAdmin, adminTasks};
+module.exports = {signupAdmin, loginAdmin, getAdminTasks, setAdminTasks};
