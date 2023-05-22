@@ -24,7 +24,8 @@ const adminSchema = new Schema({
     },
     tasks : {
         type: String,
-        required: false
+        required: false,
+        default: "Tasks"
     }
 });
 

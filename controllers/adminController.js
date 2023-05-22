@@ -52,5 +52,12 @@ const loginAdmin = async (req, res) => {
     }
 }
 
+// Get Admin Tasks
+const adminTasks = async (req, res) => {
+
+    res.status(200).json({blah: "blah"});
+
+}
+
 // Export Functions
-module.exports = {signupAdmin, loginAdmin};
+module.exports = {signupAdmin, loginAdmin, adminTasks};

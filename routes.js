@@ -8,6 +8,7 @@ Routes for the GCP React Apps
 
 const express = require('express');  // import express
 const router = express.Router();  // create router
+const requireAuth = require("./middleware/requireAuth");
 
 // CONTROLLERS ----------------------------------------------------------------
 
@@ -21,7 +22,7 @@ const { getNASAapod, getNASAneo, getSpaceflightNews, getISSinfo, getAstronauts} 
 const getJoke = require("./controllers/jokesController");
 
 // Admin login and signup controller
-const {signupAdmin, loginAdmin} = require("./controllers/adminController");
+const {signupAdmin, loginAdmin, adminTasks} = require("./controllers/adminController");
 
 // ROUTES ---------------------------------------------------------------------
 
@@ -51,6 +52,12 @@ router.post('/admin/signup', signupAdmin);
 
 // Admin Login Route
 router.post('/admin/login', loginAdmin);
+
+// Authenticated Routes -------------------------------------------------------
+router.use(requireAuth);
+
+// Admin Tasks
+router.post('/admin/tasks', adminTasks);
 
 // ----------------------------------------------------------------------------
 
